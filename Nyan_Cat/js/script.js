@@ -6,7 +6,6 @@ var cat;
 var catW = 170; // ширина кота
 var catH = 80; // высота кота
 var iSprPosition = 0; // инициализация спрайтов
-var iSprDirection = 6; // начальное направление кота
 //var backgroundMusic;
 //var wingsSound;
 var bMouseDown = false; // состояние мыши
