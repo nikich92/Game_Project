@@ -92,17 +92,15 @@ function drawScene() { // главная функция отрисовки
                 cat.x=(ctx.canvas.width/2)-1;
             }
         }
-        if (iLastMouseY > cat.y) {
-
-            cat.y += 5;
-
-        }
+//        if (iLastMouseY > cat.y) {
+//            cat.y += 5;
+//        }
         if (iLastMouseX < cat.x) {
             cat.x -= 5;
         }
-        if (iLastMouseY < cat.y) {
-            cat.y -= 5;
-        }
+//        if (iLastMouseY < cat.y) {
+//            cat.y -= 5;
+//        }
 
     }
 
