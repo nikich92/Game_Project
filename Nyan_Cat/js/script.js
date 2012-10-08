@@ -92,15 +92,15 @@ function drawScene() { // главная функция отрисовки
                 cat.x=(ctx.canvas.width/2)-1;
             }
         }
-//        if (iLastMouseY > cat.y) {
-//            cat.y += 5;
-//        }
+        if (iLastMouseY > cat.y) {
+            cat.y += 5;
+        }
         if (iLastMouseX < cat.x) {
             cat.x -= 5;
         }
-//        if (iLastMouseY < cat.y) {
-//            cat.y -= 5;
-//        }
+        if (iLastMouseY < cat.y) {
+            cat.y -= 5;
+        }
 
     }
 
@@ -151,7 +151,7 @@ $(function(){
     }
 
     star = new player(0,0,51,51,starImage);
-    cat = new player(0, ctx.canvas.height/2, catW, catH, ocatImage);
+    cat = new player(0, ctx.canvas.height/2-catH/2, catW, catH, ocatImage);
     st = getRandomInt(3,8);
     // starY = getRandomInt(0,360);
     // starX = 780;
@@ -171,10 +171,15 @@ $(function(){
 
         bMouseDown = true;
 
-        if (mouseX > cat.x && mouseX < ctx.canvas.width || mouseX<cat.x &&mouseX < ctx.canvas.width )
+        if ((mouseX > cat.x+cat.w && mouseX < ctx.canvas.width) || (mouseX<cat.x && mouseX < ctx.canvas.width) )
         {
             //cat.bCat = true;
             iLastMouseX = mouseX;
+        }
+        if ((mouseY > cat.y+cat.h && mousey < ctx.canvas.height) || (mouseY<cat.y && mouseY < ctx.canvas.height))
+        {
+            //cat.bCat = true;
+            iLastMouseY = mouseY;
         }
     });
 
