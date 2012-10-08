@@ -32,7 +32,7 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="180" column="30" selection-start="5169" selection-end="5169" vertical-scroll-proportion="0.4578097">
+            <state line="120" column="0" selection-start="3285" selection-end="3285" vertical-scroll-proportion="0.6337522">
               <folding />
             </state>
           </provider>
@@ -215,7 +215,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -293,7 +293,7 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="872" />
+      <option name="time" value="882" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -400,7 +400,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="30" selection-start="5169" selection-end="5169" vertical-scroll-proportion="0.4578097">
+        <state line="120" column="0" selection-start="3285" selection-end="3285" vertical-scroll-proportion="0.6337522">
           <folding />
         </state>
       </provider>

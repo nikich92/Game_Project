@@ -85,14 +85,14 @@ function drawScene() { // главная функция отрисовки
 
     // перемещение кота к месту нажатия мыши
     if (bMouseDown) {
-        if (iLastMouseX > cat.x) {
+        if (iLastMouseX > cat.x+cat.w) {
             cat.x += 5;
             if (cat.x>ctx.canvas.width/2)
             {
                 cat.x=(ctx.canvas.width/2)-1;
             }
         }
-        if (iLastMouseY > cat.y) {
+        if (iLastMouseY > cat.y+cat.h) {
             cat.y += 5;
         }
         if (iLastMouseX < cat.x) {
@@ -120,7 +120,7 @@ function drawScene() { // главная функция отрисовки
     }
 
     // отрисовка кота
-    ctx.drawImage(cat.image, iSprPosition*cat.w, 0, cat.w, cat.h, cat.x, 180, cat.w, cat.h);
+    ctx.drawImage(cat.image, iSprPosition*cat.w, 0, cat.w, cat.h, cat.x, cat.y, cat.w, cat.h);
 }
 
 // -------------------------------------------------------------
@@ -176,7 +176,7 @@ $(function(){
             //cat.bCat = true;
             iLastMouseX = mouseX;
         }
-        if ((mouseY > cat.y+cat.h && mousey < ctx.canvas.height) || (mouseY<cat.y && mouseY < ctx.canvas.height))
+        if ((mouseY > cat.y+cat.h && mouseY < ctx.canvas.height) || (mouseY<cat.y && mouseY < ctx.canvas.height))
         {
             //cat.bCat = true;
             iLastMouseY = mouseY;
