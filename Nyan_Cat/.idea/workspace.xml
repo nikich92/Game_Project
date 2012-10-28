@@ -32,7 +32,7 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="374" column="5" selection-start="10194" selection-end="10194" vertical-scroll-proportion="0.7567084">
+            <state line="114" column="19" selection-start="2747" selection-end="2747" vertical-scroll-proportion="0.42218247">
               <folding>
                 <element signature="n#!!block;n#collision#0" expanded="false" />
                 <element signature="n#!!block;n#player#0" expanded="false" />
@@ -311,7 +311,7 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1595" />
+      <option name="time" value="1603" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -450,7 +450,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="374" column="5" selection-start="10194" selection-end="10194" vertical-scroll-proportion="0.7567084">
+        <state line="114" column="19" selection-start="2747" selection-end="2747" vertical-scroll-proportion="0.42218247">
           <folding>
             <element signature="n#!!block;n#collision#0" expanded="false" />
             <element signature="n#!!block;n#player#0" expanded="false" />

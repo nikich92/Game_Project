@@ -112,7 +112,7 @@ function drawScene() { // главная функция отрисовки
 //    }
 
 
-    iBgShiftX += 5;
+    iBgShiftX += 10;
     if (iBgShiftX >= 2495) {
         iBgShiftX = 0;
     }
@@ -272,7 +272,7 @@ $(function(){
     startMenu.onload = function(){}
     // загрузка фонового изображения
     backgroundImage = new Image();
-    backgroundImage.src = 'images/spacefinal.svg';
+    backgroundImage.src = 'images/spacefinal1.svg';
     backgroundImage.onload = function(){
 
     }
