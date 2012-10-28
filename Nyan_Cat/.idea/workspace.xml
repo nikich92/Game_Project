@@ -32,7 +32,7 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="0" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.3649374">
+            <state line="374" column="5" selection-start="10194" selection-end="10194" vertical-scroll-proportion="0.7567084">
               <folding>
                 <element signature="n#!!block;n#collision#0" expanded="false" />
                 <element signature="n#!!block;n#player#0" expanded="false" />
@@ -94,6 +94,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -142,14 +143,13 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Nyan_Game/Nyan_Cat" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
@@ -301,7 +301,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/js/script.js</url>
-          <line>90</line>
+          <line>94</line>
           <option name="timeStamp" value="1557" />
         </line-breakpoint>
       </breakpoints>
@@ -311,10 +311,21 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1559" />
+      <option name="time" value="1595" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="0" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!block;n#collision#0" expanded="false" />
+            <element signature="n#!!block;n#player#0" expanded="false" />
+            <element signature="n#!!block;n#gameObject#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="54" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
@@ -423,13 +434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="54" selection-start="537" selection-end="537" vertical-scroll-proportion="-9.807693">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="938" column="0" selection-start="15185" selection-end="15225" vertical-scroll-proportion="0.33273703">
@@ -437,9 +441,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="54" selection-start="537" selection-end="537" vertical-scroll-proportion="-9.807693">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="0" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.3649374">
+        <state line="374" column="5" selection-start="10194" selection-end="10194" vertical-scroll-proportion="0.7567084">
           <folding>
             <element signature="n#!!block;n#collision#0" expanded="false" />
             <element signature="n#!!block;n#player#0" expanded="false" />

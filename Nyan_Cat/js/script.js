@@ -25,7 +25,9 @@ var cOFF, offset;
 var size;
 var scale = 1;
 var interval;
+var menuInt;
 var paused = true;
+var menuStr = 'Нажмите Enter для начала игры';
 // -------------------------------------------------------------
 function getRandomInt(min, max)
 {
@@ -35,6 +37,7 @@ function getRandomInt(min, max)
 // объекты :
 function pause()
 {
+    if (interval!=null)
     clearTimeout(interval);
 }
 function collision(obj1,obj2){
@@ -88,15 +91,16 @@ function clear() { // функция очистки canvas
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 function menu(){
-    var intvl;
+    pause();
     clear();
     ctx.drawImage(startMenu, 0, 0, ctx.canvas.width, ctx.canvas.height, 0,0,ctx.canvas.width,ctx.canvas.height);
-    if (paused == false)
-    {
-     clearTimeout(intvl);
-        return;
-    }
-    intvl = setTimeout(menu,30);
+    ctx.beginPath();
+    ctx.fillStyle = 'white';
+    ctx.font = '3em calibri';
+    ctx.fillText(menuStr,50,70);
+    ctx.fill();
+    ctx.closePath();
+    menuInt = setTimeout(menu,30);
 }
 function drawScene() { // главная функция отрисовки
     clear(); // очистить canvas
@@ -264,7 +268,7 @@ $(function(){
     var height = canvas.height;
 
      startMenu = new Image();
-    startMenu.src = 'images/startmenu.png';
+    startMenu.src = 'images/MainMenu.png';
     startMenu.onload = function(){}
     // загрузка фонового изображения
     backgroundImage = new Image();
@@ -357,12 +361,15 @@ $(function(){
         if (e.keyCode==13)
         {
             paused = false;
+            clearInterval(menuInt);
             drawScene();
             return;
         }
-        if (e.keyCode==8)
+        if (e.keyCode==32)
         {
-           pause();
+            menuStr = 'Нажмите Enter, чтобы продолжить';
+            paused = true;
+           menu();
             return;
         }
     }
