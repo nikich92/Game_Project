@@ -110,8 +110,7 @@ function drawScene() { // главная функция отрисовки
 //        ctx.drawImage(startMenu, 0, 0, ctx.canvas.width, ctx.canvas.height, 0,0,ctx.canvas.width,ctx.canvas.height);
 //       // return;
 //    }
-
-
+points-=1;
     iBgShiftX += 10;
     if (iBgShiftX >= 2495) {
         iBgShiftX = 0;
@@ -133,27 +132,27 @@ function drawScene() { // главная функция отрисовки
     // перемещение кота к месту нажатия мыши
     if (bMouseDown) {
         if (iLastMouseX > cat.x+cat.w) {
-            cat.x += 5;
+            cat.x += 8;
             if (cat.x>ctx.canvas.width/2)
             {
                 cat.x=(ctx.canvas.width/2)-1;
             }
         }
         if (iLastMouseY > cat.y+cat.h) {
-            cat.y += 5;
+            cat.y += 8;
         }
         if (iLastMouseX < cat.x) {
-            cat.x -= 5;
+            cat.x -= 8;
         }
         if (iLastMouseY < cat.y) {
-            cat.y -= 5;
+            cat.y -= 8;
         }
     }
     for (var i = 0; i<stars.length;i++)
     {
         if (stars[i].x<0-stars[i].w)
         {
-            speed = getRandomInt(1,5);
+            speed = getRandomInt(4,7);
             var star = new gameObject(speed);
             star.x = getRandomInt(ctx.canvas.width,ctx.canvas.width*2);
             star.y = getRandomInt(0,ctx.canvas.height-stars[i].h);
@@ -165,7 +164,7 @@ function drawScene() { // главная функция отрисовки
         }
         if (collision(cat,stars[i]))
         {
-            speed = getRandomInt(1,5);
+            speed = getRandomInt(4,7);
             var star = new gameObject(speed);
             star.x = getRandomInt(ctx.canvas.width,ctx.canvas.width*2);
             star.y = getRandomInt(0,ctx.canvas.height-51);
@@ -174,7 +173,7 @@ function drawScene() { // главная функция отрисовки
 
             star.image = stars[i].image;
             stars[i] = star;
-            points+=10;
+            points+=70;
             if (scale<1)
             {
                 scale+=0.2;
@@ -189,7 +188,7 @@ function drawScene() { // главная функция отрисовки
         if (bones[i].x<0-bones[i].w)
         {
 
-            speed = getRandomInt(2,6);
+            speed = getRandomInt(3,9);
             var bone = new gameObject(speed);
             bone.x = getRandomInt(ctx.canvas.width,ctx.canvas.width*2);
             bone.y = getRandomInt(0,ctx.canvas.height-bones[i].h);
@@ -216,7 +215,7 @@ function drawScene() { // главная функция отрисовки
             Coll = XCollAll && YCollBottom;
             Coll = XCollAll && YCollTop;
 
-            speed = getRandomInt(2,6);
+            speed = getRandomInt(3,9);
             var bone = new gameObject(speed);
             bone.x = getRandomInt(ctx.canvas.width,ctx.canvas.width*2);
             bone.y = getRandomInt(0,ctx.canvas.height-34);
@@ -227,7 +226,7 @@ function drawScene() { // главная функция отрисовки
             bone.image = bones[i].image;
             bones[i] = bone;
 
-            points-=10;
+            points-=85;
             if (scale>0.4)
             {
                 scale-=0.2;
@@ -235,8 +234,16 @@ function drawScene() { // главная функция отрисовки
             }
             else
             {
-                paused=true;
+                clearTimeout(interval);
+				menuStr = 'GAME OVER';
+				menu();
             }
+			if (points<=0)
+			{
+			 clearTimeout(interval);
+				menuStr = 'GAME OVER';
+				menu();
+			}
         }
 
         ctx.drawImage(bones[i].image,0,0,bones[i].w,bones[i].h,bones[i].x-=bones[i].speed,bones[i].y,bones[i].w,bones[i].h);
@@ -259,7 +266,7 @@ function drawScene() { // главная функция отрисовки
 // -------------------------------------------------------------
 // инициализация
 $(function(){
-
+    points = 1001;
     canvas = document.getElementById('scene');
     ctx = canvas.getContext('2d');
     cOFF = $(canvas);
@@ -295,11 +302,11 @@ $(function(){
     catDH = catH;
 
 
-    st = getRandomInt(2,5);
+    st = getRandomInt(3,7);
 
     for (var j = 0;j<st;j++)
     {
-        speed = getRandomInt(1,5);
+        speed = getRandomInt(4,7);
         var star = new gameObject(speed);
         star.x = getRandomInt(ctx.canvas.width,ctx.canvas.width*2);
         star.y = getRandomInt(0,ctx.canvas.height-51);
@@ -310,10 +317,10 @@ $(function(){
         stars.push(star);//new player(getRandomInt(600,1500),getRandomInt(0,360),star.w,star.h,star.image)
         //stars.push (new gameObject(4))
     }
-    st = getRandomInt(1,4);
+    st = getRandomInt(2,5);
     for (var j = 0;j<st;j++)
     {
-        speed = getRandomInt(2,6);
+        speed = getRandomInt(3,9);
         var bone = new gameObject(speed);
         bone.x = getRandomInt(ctx.canvas.width,ctx.canvas.width*2);
         bone.y = getRandomInt(0,ctx.canvas.height-34);
