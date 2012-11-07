@@ -29,6 +29,36 @@ var menuInt;
 var paused = true;
 var menuStr = 'Нажмите Enter для начала игры';
 // -------------------------------------------------------------
+function clearGame()
+{
+    backgroundImage = null;
+    startMenu = null;
+    iBgShiftX = 0;// смещение фона
+    cat = null;
+    catDW = 0;
+    catDH = 0;
+    st= 0;
+    speed= 0;
+    points = 0;
+    stars = new Array();
+    bones = new Array();
+    star = null;
+    bone = null;
+    starX = 800;
+    starY = 400;
+    catW = 170; // ширина кота
+    catH = 80; // высота кота
+    iSprPosition = 0; // инициализация спрайтов
+    bMouseDown = false; // состояние мыши
+    iLastMouseX = 0;
+    iLastMouseY = 0;
+    size = 0;
+    scale = 1;
+    interval = null;
+    menuInt = 0;
+    paused = false;
+    menuStr = 'Нажмите Enter для начала игры';
+}
 function getRandomInt(min, max)
 {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -38,7 +68,7 @@ function getRandomInt(min, max)
 function pause()
 {
     if (interval!=null)
-    clearTimeout(interval);
+        clearTimeout(interval);
 }
 function collision(obj1,obj2){
     var XCollFront=false;
@@ -110,7 +140,7 @@ function drawScene() { // главная функция отрисовки
 //        ctx.drawImage(startMenu, 0, 0, ctx.canvas.width, ctx.canvas.height, 0,0,ctx.canvas.width,ctx.canvas.height);
 //       // return;
 //    }
-points-=1;
+    points-=1;
     iBgShiftX += 10;
     if (iBgShiftX >= 2495) {
         iBgShiftX = 0;
@@ -235,17 +265,16 @@ points-=1;
             else
             {
                 clearTimeout(interval);
-				menuStr = 'GAME OVER';
-				menu();
+                menuStr = 'GAME OVER';
+                menu();
             }
-			if (points<=0)
-			{
-			 clearTimeout(interval);
-				menuStr = 'GAME OVER';
-				menu();
-			}
         }
-
+        if (points<=0)
+        {
+            clearTimeout(interval);
+            menuStr = 'GAME OVER';
+            menu();
+        }
         ctx.drawImage(bones[i].image,0,0,bones[i].w,bones[i].h,bones[i].x-=bones[i].speed,bones[i].y,bones[i].w,bones[i].h);
     }
 
@@ -265,7 +294,8 @@ points-=1;
 
 // -------------------------------------------------------------
 // инициализация
-$(function(){
+$(function init(){
+    paused = true;
     points = 1001;
     canvas = document.getElementById('scene');
     ctx = canvas.getContext('2d');
@@ -274,7 +304,7 @@ $(function(){
     var width = canvas.width;
     var height = canvas.height;
 
-     startMenu = new Image();
+    startMenu = new Image();
     startMenu.src = 'images/MainMenu.png';
     startMenu.onload = function(){}
     // загрузка фонового изображения
@@ -367,16 +397,27 @@ $(function(){
     {
         if (e.keyCode==13)
         {
-            paused = false;
-            clearInterval(menuInt);
-            drawScene();
-            return;
+            if (menuStr == "GAME OVER")
+            {
+                clearGame();
+                menuStr ="";
+                init();
+            }
+            else
+            {
+                if (menuStr=="Нажмите Enter для начала игры" && paused==false)
+                {return;}
+                paused = false;
+                clearInterval(menuInt);
+                drawScene();
+                return;
+            }
         }
         if (e.keyCode==32)
         {
             menuStr = 'Нажмите Enter, чтобы продолжить';
             paused = true;
-           menu();
+            menu();
             return;
         }
     }
