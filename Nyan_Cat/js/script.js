@@ -295,6 +295,7 @@ function drawScene() { // главная функция отрисовки
 // -------------------------------------------------------------
 // инициализация
 $(function init(){
+    menuStr = "Нажмите Enter для начала игры";
     paused = true;
     points = 1001;
     canvas = document.getElementById('scene');
@@ -405,12 +406,12 @@ $(function init(){
             }
             else
             {
-                if (menuStr=="Нажмите Enter для начала игры" && paused==false)
+                if (menuStr=="" && paused==false)
                 {return;}
                 paused = false;
                 clearInterval(menuInt);
+                menuStr = "";
                 drawScene();
-                return;
             }
         }
         if (e.keyCode==32)
