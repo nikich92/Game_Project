@@ -23,7 +23,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="10" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0">
+            <state line="19" column="54" selection-start="692" selection-end="692" vertical-scroll-proportion="-12.423077">
               <folding />
             </state>
           </provider>
@@ -32,7 +32,7 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="412" column="29" selection-start="11214" selection-end="11214" vertical-scroll-proportion="0.46690518">
+            <state line="197" column="27" selection-start="4910" selection-end="4910" vertical-scroll-proportion="0.5903399">
               <folding>
                 <element signature="n#!!block;n#getRandomInt#0" expanded="false" />
                 <element signature="n#!!block;n#collision#0" expanded="false" />
@@ -58,8 +58,8 @@
         <option value="$PROJECT_DIR$/nyan.html" />
         <option value="$PROJECT_DIR$/dragon.js" />
         <option value="$PROJECT_DIR$/dragonGame.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/test.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/script.js" />
       </list>
     </option>
@@ -303,7 +303,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/js/script.js</url>
-          <line>398</line>
+          <line>402</line>
           <option name="timeStamp" value="1620" />
         </line-breakpoint>
       </breakpoints>
@@ -313,7 +313,7 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="1666" />
+      <option name="time" value="1714" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -450,14 +450,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="10" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0">
+        <state line="19" column="54" selection-start="692" selection-end="692" vertical-scroll-proportion="-12.423077">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="412" column="29" selection-start="11214" selection-end="11214" vertical-scroll-proportion="0.46690518">
+        <state line="197" column="27" selection-start="4910" selection-end="4910" vertical-scroll-proportion="0.5903399">
           <folding>
             <element signature="n#!!block;n#getRandomInt#0" expanded="false" />
             <element signature="n#!!block;n#collision#0" expanded="false" />

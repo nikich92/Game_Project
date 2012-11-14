@@ -194,6 +194,7 @@ function drawScene() { // главная функция отрисовки
         }
         if (collision(cat,stars[i]))
         {
+            audioSprite.play();
             speed = getRandomInt(4,7);
             var star = new gameObject(speed);
             star.x = getRandomInt(ctx.canvas.width,ctx.canvas.width*2);
@@ -217,7 +218,6 @@ function drawScene() { // главная функция отрисовки
     {
         if (bones[i].x<0-bones[i].w)
         {
-
             speed = getRandomInt(3,9);
             var bone = new gameObject(speed);
             bone.x = getRandomInt(ctx.canvas.width,ctx.canvas.width*2);
@@ -292,6 +292,7 @@ function drawScene() { // главная функция отрисовки
     interval = setTimeout(drawScene,30);
 }
 
+var audioSprite;
 // -------------------------------------------------------------
 // инициализация
 $(function init(){
@@ -304,7 +305,10 @@ $(function init(){
     offset = cOFF.offset();
     var width = canvas.width;
     var height = canvas.height;
-
+    var NyanPlay = document.getElementById("backMusic");
+    NyanPlay.volume = 0.4;
+    NyanPlay.play();
+    audioSprite = document.getElementById("sprites");
     startMenu = new Image();
     startMenu.src = 'images/MainMenu.png';
     startMenu.onload = function(){}
