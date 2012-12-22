@@ -304,8 +304,8 @@ function boss()
         }
         if(getRandomInt(0,100)>98)
         {
-            var boneBos = new gameObject(getRandomInt(3,10));
-            boneBos.x = finalBoss.x-200;
+            var boneBos = new gameObject(getRandomInt(3,7));
+            boneBos.x = finalBoss.x-170;
             boneBos.y = finalBoss.y;
             boneBos.w = 60*Xcoeff;
             boneBos.h = 34*Ycoeff;
@@ -315,9 +315,9 @@ function boss()
             boneBoss.push(boneBos);
         }
         var th = getRandomInt(0,1000);
-        if(th>90&&th<96)
+        if(th>90&&th<94)
         {
-            var bubbleBos = new gameObject(getRandomInt(3,7));
+            var bubbleBos = new gameObject(getRandomInt(2,5));
             bubbleBos.x = finalBoss.x-60;
             bubbleBos.y = finalBoss.y;
             bubbleBos.w = 51*Xcoeff;
@@ -413,15 +413,8 @@ function boss()
 
     ctx.drawImage(finalBoss.image, 0, 0, 170, 116, finalBoss.x, finalBoss.y, finalBoss.w, finalBoss.h);
     finalBoss = new player(finalBoss.x,finalBoss.y, finalBoss.w, finalBoss.h,finalBoss.image);
-
-    // ctx.beginPath();
-    //  ctx.fillStyle = "white";
-    //  ctx.font = "bold 1.5em calibri";
     $('#shell').css("display","block");
     $('#shellA').text("Количество отбиваний "+cat_block);
-    // ctx.fillText("Количество отбиваний "+cat_block,ctx.canvas.height,ctx.canvas.height-30)
-    // ctx.fill();
-    // ctx.closePath();
 }
 
 function moveObj(levelSpeed)
@@ -465,7 +458,7 @@ function moveObj(levelSpeed)
             if(collision(cat,stars[i]))
             {
                 getStar.play();
-                points+=500;
+                points+=67;
                 if (scale<1)
                 {
                     scale+=0.1;
@@ -539,14 +532,14 @@ function drawScene() { // главная функция отрисовки
             cat.y -= 8;
         }
     }
-    if (points>1100)
+    if (points>2300)
     {
         if (levelNum!="boss")
         {
             levelNum = 2;
         }
     }
-    if (points>1200)
+    if (points>4000)
     {
         levelNum = "boss";
     }
@@ -586,7 +579,7 @@ function drawScene() { // главная функция отрисовки
     //Измененная генерация костей
     if(getRandomInt(0,100)>96)
     {
-        speed = getRandomInt(3,10)
+        speed = getRandomInt(3,6)
         var bone = new gameObject(speed);
         bone.x = getRandomInt(canvas.width, canvas.width*2);
         bone.y = getRandomInt(0, canvas.height - 34*Ycoeff);
@@ -598,7 +591,7 @@ function drawScene() { // главная функция отрисовки
     //Измененная генерация звезд
     if(getRandomInt(0,100)>96)
     {
-        speed = getRandomInt(3,7)
+        speed = getRandomInt(2,6)
         var star = new gameObject(speed);
         star.x = getRandomInt(canvas.width, canvas.width*2);
         star.y = getRandomInt(0, canvas.height - 51*Xcoeff);
@@ -607,13 +600,6 @@ function drawScene() { // главная функция отрисовки
         star.image = starImage;
         stars.push(star);
     }
-
-//    if (points<=0||scale<0.4)
-//    {
-//        clearTimeout(interval);
-//        menuStr = -1;
-//        menu();
-//    }
     // отрисовка кота
     if (size)
     {
