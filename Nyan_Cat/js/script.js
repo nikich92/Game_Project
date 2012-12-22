@@ -47,6 +47,7 @@ var getStar;
 var getBone;
 var NyanPlay;
 var overMus;
+var victoryMus;
 var levelNum = 1;
 var Xcoeff, Ycoeff;
 var starW = 51;
@@ -133,7 +134,7 @@ function menu(){
         switch (menuStr)
         {
             case 5:
-                overMus.play();
+                victoryMus.play();
                 $("#shell").css("z-index","0");
                 $("#btnPause").css("visibility","hidden");
                 $("#scene").css(
@@ -439,7 +440,7 @@ function moveObj(levelSpeed)
         {
             if(collision(cat,bones[i])){
                 getBone.play();
-                points-=85;
+                points-=88;
                 if (scale>0.4)
                 {
                     scale-=0.2;
@@ -449,7 +450,7 @@ function moveObj(levelSpeed)
             }
             else
                 ctx.drawImage(bones[i].image, 0, 0, 60, 34,
-                    bones[i].x-=bones[i].speed, bones[i].y, bones[i].w, bones[i].h);
+                    bones[i].x-=bones[i].speed*levelSpeed, bones[i].y, bones[i].w, bones[i].h);
         }
     //Измененное движение звезд
     if(stars!=null)
@@ -458,7 +459,7 @@ function moveObj(levelSpeed)
             if(collision(cat,stars[i]))
             {
                 getStar.play();
-                points+=67;
+                points+=80;
                 if (scale<1)
                 {
                     scale+=0.1;
@@ -469,7 +470,7 @@ function moveObj(levelSpeed)
             }
             else
                 ctx.drawImage(stars[i].image, 0, 0, 51, 51,
-                    stars[i].x-=stars[i].speed, stars[i].y, stars[i].w, stars[i].h);
+                    stars[i].x-=stars[i].speed*levelSpeed, stars[i].y, stars[i].w, stars[i].h);
 
         }
 }
@@ -532,14 +533,14 @@ function drawScene() { // главная функция отрисовки
             cat.y -= 8;
         }
     }
-    if (points>2300)
+    if (points>2700)
     {
         if (levelNum!="boss")
         {
             levelNum = 2;
         }
     }
-    if (points>4000)
+    if (points>3500)
     {
         levelNum = "boss";
     }
@@ -570,16 +571,16 @@ function drawScene() { // главная функция отрисовки
         clearTimeout(interval);
         menuStr = 5;
         paused = true;
-        overMus.volume = 0.8;
+        victoryMus.volume = 0.8;
         NyanPlay.pause();
         menu();
         return;
     }
 
     //Измененная генерация костей
-    if(getRandomInt(0,100)>96)
+    if(getRandomInt(0,110)>106)
     {
-        speed = getRandomInt(3,6)
+        speed = getRandomInt(5,8)
         var bone = new gameObject(speed);
         bone.x = getRandomInt(canvas.width, canvas.width*2);
         bone.y = getRandomInt(0, canvas.height - 34*Ycoeff);
@@ -589,9 +590,9 @@ function drawScene() { // главная функция отрисовки
         bones.push(bone);
     }
     //Измененная генерация звезд
-    if(getRandomInt(0,100)>96)
+    if(getRandomInt(0,105)>102)
     {
-        speed = getRandomInt(2,6)
+        speed = getRandomInt(4,6)
         var star = new gameObject(speed);
         star.x = getRandomInt(canvas.width, canvas.width*2);
         star.y = getRandomInt(0, canvas.height - 51*Xcoeff);
@@ -678,9 +679,10 @@ $(document).ready(function init(){
     getStar = document.getElementById("getstar");
     getBone =  document.getElementById("getbone");
     overMus = document.getElementById("over");
+     victoryMus = document.getElementById("victory");
     menuStr = 1;
     paused = true;
-    points = 1001;
+    points = 2001;
     canvas = document.getElementById('scene');
     canvas.width = screen.width;
     canvas.height = screen.height;
@@ -954,6 +956,7 @@ function initialize()
     getStar = document.getElementById("getstar");
     getBone =  document.getElementById("getbone");
     overMus = document.getElementById("over");
+    victoryMus = document.getElementById("victory");
     menuStr = 1;
     points = 1001;
     canvas = document.getElementById('scene');
