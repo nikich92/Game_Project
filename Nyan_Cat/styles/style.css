@@ -26,6 +26,23 @@
     color: white;
     border: 0.3em inset white;
 }
+#shell
+{
+    position: absolute;
+    width: 40%;
+    height: 20%;
+    display: none;
+    z-index: 2000;
+    margin-top: 5%;
+    margin-left: 40%;
+}
+.shellCount
+{
+    font-family: Calibri;
+    font-size: 180%;
+    text-align: center;
+    color: white;
+}
 .tableRec
 {
     width: 100%;
@@ -43,16 +60,26 @@
 {
     display: none;
 }
+.End
+{
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 100%;
+    z-index: 3000;
+    display: none;
+}
 .menust ul
 {
     padding: 0px;
     margin: 0px;
 }
-#pointsCount
+#pointsCount,#win
 {
     font-family: Calibri;
     font-size: 200%;
     font-weight: bold;
+    color: white;
 }
 
 #back

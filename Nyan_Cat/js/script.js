@@ -53,6 +53,7 @@ var starW = 51;
 var starH =51;
 var boneW = 60;
 var boneH =34;
+var bubbleScale = false;
 var newGame = false;
 var catImage = new Image();
 var starImage = new Image();
@@ -121,6 +122,7 @@ function clear() { // функция очистки canvas
 function menu(){
     if (paused == true)
     {
+        $('#shell').css("display","none");
         if (interval!=null)
             clearTimeout(interval);
         clear();
@@ -130,6 +132,29 @@ function menu(){
         ctx.font = '3em calibri';
         switch (menuStr)
         {
+            case 5:
+                overMus.play();
+                $("#shell").css("z-index","0");
+                $("#btnPause").css("visibility","hidden");
+                $("#scene").css(
+                    {
+                        visibility:'hidden',
+                        zIndex: 1
+                    }
+                ) ;
+                $('#wrapper').css(
+                    {
+                        zIndex:999
+                    }
+                );
+                $("#pointsCount").text(points);
+                $("#gameEnd").css("display","block");
+                $("#win").text("Ну ты красава, ваще!!!");
+                $("#win").css("font-size","550%");
+                $('#wrapper').fadeIn("slow");
+                $("#results").css("display","block");
+                $('#menu').css('display','none');
+                break;
             case -1:
                 overMus.play();
                 $("#btnPause").css("visibility","hidden");
@@ -185,6 +210,7 @@ function menu(){
                 tbl[0].innerHTML =temp+"</table>";
                 break;
             case 4:
+                $("#win").text("");
                 $("#results").css("z-index",'0');
                 $("#results").fadeOut('slow');
                 $("#menu").fadeIn("slow");
@@ -289,7 +315,7 @@ function boss()
             boneBoss.push(boneBos);
         }
         var th = getRandomInt(0,1000);
-        if(th>90&&th<100)
+        if(th>90&&th<96)
         {
             var bubbleBos = new gameObject(getRandomInt(3,7));
             bubbleBos.x = finalBoss.x-60;
@@ -304,25 +330,18 @@ function boss()
     if (boneBoss!= null)
         for(var i=0;i<boneBoss.length;i++)
         {
-            if(boneBoss[i].x>canvas.width*3&&boneBoss[i].x>0)
+            if(boneBoss[i].x>canvas.width*3||boneBoss[i].x<0)
             {
                 boneBoss.splice(i,1);
             }
             else
             if(collision(finalBoss, boneBoss[i]))
             {
-                scaleX-=0.05;
-                scaleY-=0.05;
-                if(scaleX<0.4)
-                {
-                    clearTimeout(interval);
-                    menuStr = -1;
-                    paused = true;
-                    overMus.volume = 0.8;
-                    NyanPlay.pause();
-                    menu();
-                    return;
-                }
+                scaleX-=0.08;
+                scaleY-=0.08;
+                points+=40;
+                finalBoss.w=bossW*scaleX;
+                finalBoss.h=bossH*scaleY;
                 boneBoss.splice(i,1);
             }
             else
@@ -339,8 +358,10 @@ function boss()
                 {
                     if (scale>0.4)
                     {
+                        points-=55;
                         scale-=0.2;
                         size = true;
+                        boneBoss.splice(i,1);
                     }
                 }
                 else
@@ -355,13 +376,15 @@ function boss()
                 }
             }
             else
+            {
                 ctx.drawImage(boneBoss[i].image, 0, 0, 60, 34,
                     boneBoss[i].x-=boneBoss[i].speed, boneBoss[i].y, boneBoss[i].w, boneBoss[i].h);
+            }
         }
     if(bubbleBoss!=null)
         for(var i=0;i<bubbleBoss.length;i++)
         {
-            if(bubbleBoss[i].x>canvas.width*3&&bubbleBoss[i].x>0)
+            if(bubbleBoss[i].x>canvas.width*3||bubbleBoss[i].x<0)
             {
                 bubbleBoss.splice(i,1);
             }
@@ -369,31 +392,36 @@ function boss()
             if(collision(cat,bubbleBoss[i])){
                 getBone.play();
                 bubbleBoss.splice(i,1);
+                cat_block+=2;
+                if (scale<1 && bubbleScale===false)
+                {
+                    scale+=0.1;
+                    size = true;
+                    bubbleScale = true;
+                }
                 withBubble = true;
-                cat_block+=3;
             }
             else
                 ctx.drawImage(bubbleBoss[i].image, 0, 0, 51,41,
                     bubbleBoss[i].x-=bubbleBoss[i].speed, bubbleBoss[i].y, bubbleBoss[i].w, bubbleBoss[i].h);
         }
-    ctx.drawImage(finalBoss.image, 0, 0, 170, 116, finalBoss.x, finalBoss.y, bossW, bossH);
-    finalBoss = new player(finalBoss.x,finalBoss.y,bossW,bossH,finalBoss.image);
-    if(!withBubble)
+    if (cat_block==0)
     {
-    ctx.drawImage(cat.image, iSprPosition*170, 0, 170, 80, cat.x, cat.y, cat.w, cat.h);
-    cat = new player(cat.x,cat.y,cat.w,cat.h,cat.image);
+        withBubble = false;
+        bubbleScale = false;
     }
-    else
-    {
-        ctx.drawImage(angryCatImage, iSprPosition*170, 0, 170, 80, cat.x, cat.y, cat.w, cat.h);
-        cat = new player(cat.x,cat.y,catDW,catDH,angryCatImage);
-    }
-    ctx.beginPath();
-    ctx.fillStyle = "white";
-    ctx.font = "bold 1.5em calibri";
-    ctx.fillText("Количество отбиваний "+cat_block,140,ctx.canvas.height-30)
-    ctx.fill();
-    ctx.closePath();
+
+    ctx.drawImage(finalBoss.image, 0, 0, 170, 116, finalBoss.x, finalBoss.y, finalBoss.w, finalBoss.h);
+    finalBoss = new player(finalBoss.x,finalBoss.y, finalBoss.w, finalBoss.h,finalBoss.image);
+
+    // ctx.beginPath();
+    //  ctx.fillStyle = "white";
+    //  ctx.font = "bold 1.5em calibri";
+    $('#shell').css("display","block");
+    $('#shellA').text("Количество отбиваний "+cat_block);
+    // ctx.fillText("Количество отбиваний "+cat_block,ctx.canvas.height,ctx.canvas.height-30)
+    // ctx.fill();
+    // ctx.closePath();
 }
 
 function moveObj(levelSpeed)
@@ -440,7 +468,7 @@ function moveObj(levelSpeed)
                 points+=500;
                 if (scale<1)
                 {
-                    scale+=0.2;
+                    scale+=0.1;
                     size = true;
                 }
                 if(scale>1) scale=1;
@@ -513,7 +541,10 @@ function drawScene() { // главная функция отрисовки
     }
     if (points>1100)
     {
-        levelNum = 2;
+        if (levelNum!="boss")
+        {
+            levelNum = 2;
+        }
     }
     if (points>1200)
     {
@@ -535,6 +566,16 @@ function drawScene() { // главная функция отрисовки
     {
         clearTimeout(interval);
         menuStr = -1;
+        paused = true;
+        overMus.volume = 0.8;
+        NyanPlay.pause();
+        menu();
+        return;
+    }
+    if(scaleX<0.4)
+    {
+        clearTimeout(interval);
+        menuStr = 5;
         paused = true;
         overMus.volume = 0.8;
         NyanPlay.pause();
@@ -567,22 +608,40 @@ function drawScene() { // главная функция отрисовки
         stars.push(star);
     }
 
-    if (points<=0||scale<0.4)
-    {
-        clearTimeout(interval);
-        menuStr = -1;
-        menu();
-    }
+//    if (points<=0||scale<0.4)
+//    {
+//        clearTimeout(interval);
+//        menuStr = -1;
+//        menu();
+//    }
     // отрисовка кота
     if (size)
     {
-        ctx.drawImage(cat.image, iSprPosition*170, 0, 170, 80, cat.x, cat.y, catDW*scale, catDH*scale);
-        cat = new player(cat.x,cat.y,catDW*scale,catDH*scale,cat.image);
+        if(!withBubble)
+        {
+            ctx.drawImage(catImage, iSprPosition*170, 0, 170, 80, cat.x, cat.y, catDW*scale, catDH*scale);
+            cat = new player(cat.x,cat.y,catDW*scale,catDH*scale,catImage);
+        }
+        else
+        {
+            ctx.drawImage(angryCatImage, iSprPosition*170, 0, 170, 80, cat.x, cat.y, catDW*scale, catDH*scale);
+            cat = new player(cat.x,cat.y,catDW*scale,catDH*scale,angryCatImage);
+        }
     }
     else
     {
-        ctx.drawImage(cat.image, iSprPosition*170, 0, 170, 80, cat.x, cat.y, cat.w, cat.h);
+        if(!withBubble)
+        {
+            ctx.drawImage(catImage, iSprPosition*170, 0, 170, 80, cat.x, cat.y, cat.w, cat.h);
+            cat = new player(cat.x,cat.y,cat.w, cat.h,catImage);
+        }
+        else
+        {
+            ctx.drawImage(angryCatImage, iSprPosition*170, 0, 170, 80, cat.x, cat.y, cat.w, cat.h);
+            cat = new player(cat.x,cat.y,cat.w, cat.h,angryCatImage);
+        }
     }
+
     ctx.beginPath();
     ctx.fillStyle = "white";
     ctx.font = "bold 2em calibri";
@@ -629,7 +688,7 @@ function getLastID()
 // инициализация
 $(document).ready(function init(){
 
-
+    $('#shell').css("display","none");
     getStar = document.getElementById("getstar");
     getBone =  document.getElementById("getbone");
     overMus = document.getElementById("over");
@@ -742,6 +801,7 @@ $(document).ready(function init(){
 ///////////////ПАУЗА////////////////
     $('#btnPause').bind('tap',function(e)
     {
+        $('#shell').css("display","none");
         $('#btnPause').css('visibility','hidden');
         paused = true;
         menuStr = 2;
@@ -839,6 +899,10 @@ $(document).ready(function init(){
         if (menuStr == 2)
         {
             paused = false;
+            if (levelNum=="boss")
+            {
+                $('#shell').css("display","block");
+            }
             $("#btnPause").css('visibility','visible');
             $("#quit").css('visibility','visible');
             $('#quit').css('display','block');
@@ -876,11 +940,9 @@ function initialize()
     bubbleImage = new Image();
     angryCatImage = new Image();
     boneBoss = new Array();
-     bubbleBoss = new Array();
+    bubbleBoss = new Array();
     cat_block = 0;
     temp=0;
-     scaleX = 1;
-     scaleY = 1;
     b =true;
     withBubble = false;
     iBgShiftX = 0;// смещение фона
