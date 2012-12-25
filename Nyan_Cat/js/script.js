@@ -748,14 +748,14 @@ $(document).ready(function init(){
 
     ////-------------------------------------УПРАВЛЕНИЕ--------------------------////
 
-    $('#scene').bind('touchstart',function(event)
+    canvas.addEventListener("touchstart", function(e)
     {
         var touchX = event.touches[0].pageX || 0;
         var touchY = event.touches[0].pageY || 0;
-        if(event.originalEvent.layerX) {
-            touchX =  event.pageX-offset.left;
-            touchY = event.pageY-offset.top;
-        }
+        //if(event.originalEvent.pageX) {
+            touchX =  event.touches[0].pageX-offset.left;
+            touchY = event.touches[0].pageY-offset.top;
+       // }
         bMouseDown = true;
         if ((touchX > cat.x+cat.w && touchX < ctx.canvas.width) || (touchX<cat.x && touchX > 0) )
         {
@@ -765,15 +765,40 @@ $(document).ready(function init(){
         {
             iLastMouseY = touchY;
         }
-        event.preventDefault();
-    });
+    },false);
 
-    $('#scene').bind('touchend',function(event)
+    canvas.addEventListener('touchend',function(event)
     {
         cat.bCat = false;
         bMouseDown = false;
-        event.preventDefault();
-    });
+        //  event.preventDefault();
+    },false);
+//    $('#scene').bind('touchstart',function(event)
+//    {
+//        var touchX = event.touches[0].pageX || 0;
+//        var touchY = event.touches[0].pageY || 0;
+//        if(event.originalEvent.layerX) {
+//            touchX =  event.pageX-offset.left;
+//            touchY = event.pageY-offset.top;
+//        }
+//        bMouseDown = true;
+//        if ((touchX > cat.x+cat.w && touchX < ctx.canvas.width) || (touchX<cat.x && touchX > 0) )
+//        {
+//            iLastMouseX = touchX;
+//        }
+//        if ((touchY > cat.y+cat.h && touchY < ctx.canvas.height) || (touchY<cat.y && touchY > 0))
+//        {
+//            iLastMouseY = touchY;
+//        }
+//       // event.preventDefault();
+//    });
+//
+//    $('#scene').bind('touchend',function(event)
+//    {
+//        cat.bCat = false;
+//        bMouseDown = false;
+//      //  event.preventDefault();
+//    });
 
 ///////////////ПАУЗА////////////////
     $('#btnPause').bind('tap',function(e)
