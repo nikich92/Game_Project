@@ -684,15 +684,15 @@ $(document).ready(function init(){
     paused = true;
     points = 2001;
     canvas = document.getElementById('scene');
-    canvas.width = screen.width;
-    canvas.height = screen.height;
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.body.clientHeight;
     //canvas.width = 800;
   //  canvas.height = 480;
-    $("body").css({
-        width: canvas.width+"px",
-        height: canvas.height+"px",
-        position: 'absolute'
-    });
+//    $("body").css({
+//        width: canvas.width+"px",
+//        height: canvas.height+"px",
+//        position: 'absolute'
+//    });
     $("#all").css({
         width: canvas.width+"px",
         height: canvas.height+"px"
@@ -789,12 +789,14 @@ $(document).ready(function init(){
         {
             iLastMouseY = touchY;
         }
+        event.preventDefault();
     });
 
     $('#scene').bind('touchend',function(event)
     {
         cat.bCat = false;
         bMouseDown = false;
+        event.preventDefault();
     });
 
 ///////////////ПАУЗА////////////////
