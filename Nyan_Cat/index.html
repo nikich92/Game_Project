@@ -2,13 +2,13 @@
 <html lang="ru" >
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="user-scalable=no, width=device-width" />
-    <title>Nyan Cat</title>
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <!--<meta name="viewport" content="user-scalable=no, width=device-width" />-->
+    <title>Pop Tarts Cat</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
+<div id="all" >
 <audio id="backMusic" autoplay="true" preload="auto">
     <source src="media/main_theme.mp3">
     <source src="media/main_theme.ogg">
@@ -29,7 +29,7 @@
     <source src="media/victory.mp3">
     <source src="media/victory.ogg">
 </audio>
-<canvas id="scene" class="canv" width="800" height="480"></canvas>
+<canvas id="scene" class="canv"></canvas>
 <section id="gameEnd" class="End"><label id="win"></label></section>
 <section id="btnPause"> <img src="images/pause.png" width="64" height="64" id="imgSize"></section>
 <section id="wrapper" class="wrap">
@@ -51,13 +51,13 @@
     </table>
     <a id="back">Назад</a>
 </div>
-<article id="shell"><a id="shellA" class="shellCount"></a><article>
+<article id="shell"><a id="shellA" class="shellCount"></a></article>
+</div>
 <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <script type="text/javascript" src="js/script.js"></script>
-
 </body>
 </html>

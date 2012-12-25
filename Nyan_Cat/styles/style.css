@@ -11,11 +11,11 @@
 {
     display: none;
     position: absolute;
-    margin-left: 65%;
+    margin-left: 60%;
     margin-top: 20%;
     overflow: auto;
-    height: 90%;
-    width: 33%;
+    height: 60%;
+    width: 35%;
     z-index: 1001;
 }
 .divRec td
@@ -34,7 +34,7 @@
     display: none;
     z-index: 2000;
     margin-top: 5%;
-    margin-left: 40%;
+    margin-left: 35%;
 }
 .shellCount
 {
@@ -52,7 +52,7 @@
 .menust
 {
     margin-top: 60%;
-    margin-left: 70%;
+    margin-left: 65%;
     margin-right: 10%;
     position: absolute;
 }
@@ -125,7 +125,7 @@
 #name
 {
     width: 100%;
-    font-size: 190%;
+    font-size: 110%;
     -moz-user-select: -moz-none;
     -khtml-user-select: auto;
     -webkit-user-select: auto;
@@ -160,4 +160,8 @@
     position: absolute;
     visibility: hidden;
     z-index: 1;
+}
+#all
+{
+    position: absolute;
 }

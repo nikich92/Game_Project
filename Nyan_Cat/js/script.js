@@ -151,7 +151,7 @@ function menu(){
                 $("#pointsCount").text(points);
                 $("#gameEnd").css("display","block");
                 $("#win").text("Ну ты красава, ваще!!!");
-                $("#win").css("font-size","550%");
+                $("#win").css("font-size","300%");
                 $('#wrapper').fadeIn("slow");
                 $("#results").css("display","block");
                 $('#menu').css('display','none');
@@ -632,7 +632,7 @@ function drawScene() { // главная функция отрисовки
     ctx.beginPath();
     ctx.fillStyle = "white";
     ctx.font = "bold 2em calibri";
-    ctx.fillText(points.toString().split('.')[0],ctx.canvas.width/40,ctx.canvas.height/25)
+    ctx.fillText(points.toString().split('.')[0],ctx.canvas.width/40,ctx.canvas.height/20)
     ctx.fill();
     ctx.closePath();
     ctx.beginPath();
@@ -686,6 +686,17 @@ $(document).ready(function init(){
     canvas = document.getElementById('scene');
     canvas.width = screen.width;
     canvas.height = screen.height;
+    //canvas.width = 800;
+  //  canvas.height = 480;
+    $("body").css({
+        width: canvas.width+"px",
+        height: canvas.height+"px",
+        position: 'absolute'
+    });
+    $("#all").css({
+        width: canvas.width+"px",
+        height: canvas.height+"px"
+    });
     $("#wrapper").css({
         width: canvas.width+"px",
         height: canvas.height+"px"
@@ -736,34 +747,38 @@ $(document).ready(function init(){
 
 
     ////-------------------------------------УПРАВЛЕНИЕ--------------------------////
-    $('#scene').bind('mousedown',function(e) {
-        var mouseX = e.layerX || 0;
-        var mouseY = e.layerY || 0;
-        //e.preventDefault();
-        //var touch = e.touch[0];
-        if(e.originalEvent.layerX) {
-            mouseX =  e.pageX-offset.left;
-            mouseY = e.pageY-offset.top;
-        }
-        bMouseDown = true;
-        if ((mouseX > cat.x+cat.w && mouseX < ctx.canvas.width) || (mouseX<cat.x && mouseX > 0) )
-        {
-            iLastMouseX = mouseX;
-        }
-        if ((mouseY > cat.y+cat.h && mouseY < ctx.canvas.height) || (mouseY<cat.y && mouseY > 0))
-        {
-            iLastMouseY = mouseY;
-        }
-    });
-    canvas.addEventListener('touchstart',function(event)
+//    $('#scene').bind('mousedown',function(e) {
+//        var mouseX = e.layerX || 0;
+//        var mouseY = e.layerY || 0;
+//        if(e.originalEvent.layerX) {
+//            mouseX =  e.pageX-offset.left;
+//            mouseY = e.pageY-offset.top;
+//        }
+//        bMouseDown = true;
+//        if ((mouseX > cat.x+cat.w && mouseX < ctx.canvas.width) || (mouseX<cat.x && mouseX > 0) )
+//        {
+//            iLastMouseX = mouseX;
+//        }
+//        if ((mouseY > cat.y+cat.h && mouseY < ctx.canvas.height) || (mouseY<cat.y && mouseY > 0))
+//        {
+//            iLastMouseY = mouseY;
+//        }
+//    });
+//
+//    $('#scene').bind('mouseup',function(e){
+//        cat.bCat = false;
+//        bMouseDown = false;
+//    });
+
+    $('#scene').bind('touchstart',function(event)
     {
-        var touchX = event.touches[0].pageX;
-        var touchY = event.touches[0].pageY;
-        //e.preventDefault();
+        var touchX = event.touches[0].pageX || 0;
+        var touchY = event.touches[0].pageY || 0;
+        //event.preventDefault();
         //var touch = e.touch[0];
-        if(e.originalEvent.layerX) {
-            touchX =  e.pageX-offset.left;
-            touchY = e.pageY-offset.top;
+        if(event.originalEvent.layerX) {
+            touchX =  event.pageX-offset.left;
+            touchY = event.pageY-offset.top;
         }
         bMouseDown = true;
         if ((touchX > cat.x+cat.w && touchX < ctx.canvas.width) || (touchX<cat.x && touchX > 0) )
@@ -774,21 +789,18 @@ $(document).ready(function init(){
         {
             iLastMouseY = touchY;
         }
-    },false);
+    });
 
-    canvas.addEventListener('touchend',function(event)
+    $('#scene').bind('touchend',function(event)
     {
-        cat.bCat = false;
-        bMouseDown = false;
-    },false);
-
-    $('#scene').bind('mouseup',function(e){
         cat.bCat = false;
         bMouseDown = false;
     });
+
 ///////////////ПАУЗА////////////////
     $('#btnPause').bind('tap',function(e)
     {
+       // e.preventDefault();
         $('#shell').css("display","none");
         $('#btnPause').css('visibility','hidden');
         paused = true;
@@ -798,6 +810,7 @@ $(document).ready(function init(){
 /////////////////Рекорды////////////////
     $('#rec').bind('tap',function(e)
     {
+        //e.preventDefault();
         $('#btnPause').css('visibility','hidden');
         $('#menu').fadeOut('slow');
         menuStr = 3;
@@ -806,6 +819,7 @@ $(document).ready(function init(){
 
     $('#back').bind('tap',function(e)
     {
+       // e.preventDefault();
         $('#btnPause').css('visibility','hidden');
         $("#tblRec").fadeOut('slow');
         $('#menu').fadeIn('slow');
@@ -815,6 +829,7 @@ $(document).ready(function init(){
 //////Выход//////
     $('#quit').bind('tap',function(e)
     {
+       // e.preventDefault();
         $('#btnPause').css('visibility','hidden');
         $('#menu').fadeIn('slow');
         NyanPlay.pause();
@@ -831,6 +846,7 @@ $(document).ready(function init(){
     /////////////Запись очков////////////
     $('#done').bind('tap',function(e)
     {
+        //e.preventDefault();
         var name, record;
         name = $("#name")[0].value;
         record = $("#pointsCount").text();
@@ -862,6 +878,7 @@ $(document).ready(function init(){
 ///////////////Продолжить/НАЧАТЬ/////////
     $('#start').bind('tap', function(e)
     {
+        //e.preventDefault();
         if (menuStr == -1)
         {
             //clearGame();
@@ -953,19 +970,34 @@ function initialize()
     boneW = 60;
     boneH =34;
 
+
+    $('#shell').css("display","none");
     getStar = document.getElementById("getstar");
     getBone =  document.getElementById("getbone");
     overMus = document.getElementById("over");
     victoryMus = document.getElementById("victory");
     menuStr = 1;
-    points = 1001;
+    paused = true;
+    points = 2001;
     canvas = document.getElementById('scene');
     canvas.width = screen.width;
     canvas.height = screen.height;
+   // canvas.width = 800;
+   // canvas.height = 480;
+    $("body").css({
+        width: canvas.width+"px",
+        height: canvas.height+"px",
+        position: 'absolute'
+    });
+    $("#all").css({
+        width: canvas.width+"px",
+        height: canvas.height+"px"
+    });
     $("#wrapper").css({
         width: canvas.width+"px",
         height: canvas.height+"px"
     });
+
     Xcoeff = canvas.width/800;
     Ycoeff = canvas.height/480;
     bossW = bossW*Xcoeff;
@@ -974,8 +1006,6 @@ function initialize()
     catH = catH*Ycoeff;
     ctx = canvas.getContext('2d');
     cOFF = $(canvas);
-    center = canvas.height/2;
-    rand = getRandomInt(0,center);
     offset = cOFF.offset();
     NyanPlay = document.getElementById("backMusic");
     $("#imgSize").width(64*Xcoeff);
@@ -993,15 +1023,18 @@ function initialize()
         }
     );
     startMenu = new Image();
-
+    center = canvas.height/2;
+    rand = getRandomInt(0,center);
     backgroundImage = new Image();
     backgroundImage.src = 'images/space.png';
+
     bossImg.src = 'images/mad_dog.png';
     boneImage.src = 'images/bone.png';
     starImage.src = 'images/points_stars.png';
     catImage.src = 'images/nyan_cat.png';
     bubbleImage.src = 'images/bubble.png';
     angryCatImage.src = 'images/nyan_cat_with_bubble.png';
+
     cat = new player(0, ctx.canvas.height/2-catH/2, catW, catH, catImage);
     finalBoss = new player(canvas.width+bossW, canvas.height/2-bossH/2,bossW,bossH,bossImg);
     catDW = catW;
