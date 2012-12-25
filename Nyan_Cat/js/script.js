@@ -747,28 +747,28 @@ $(document).ready(function init(){
 
 
     ////-------------------------------------УПРАВЛЕНИЕ--------------------------////
-//    $('#scene').bind('mousedown',function(e) {
-//        var mouseX = e.layerX || 0;
-//        var mouseY = e.layerY || 0;
-//        if(e.originalEvent.layerX) {
-//            mouseX =  e.pageX-offset.left;
-//            mouseY = e.pageY-offset.top;
-//        }
-//        bMouseDown = true;
-//        if ((mouseX > cat.x+cat.w && mouseX < ctx.canvas.width) || (mouseX<cat.x && mouseX > 0) )
-//        {
-//            iLastMouseX = mouseX;
-//        }
-//        if ((mouseY > cat.y+cat.h && mouseY < ctx.canvas.height) || (mouseY<cat.y && mouseY > 0))
-//        {
-//            iLastMouseY = mouseY;
-//        }
-//    });
-//
-//    $('#scene').bind('mouseup',function(e){
-//        cat.bCat = false;
-//        bMouseDown = false;
-//    });
+    $('#scene').bind('mousedown',function(e) {
+        var mouseX = e.layerX || 0;
+        var mouseY = e.layerY || 0;
+        if(e.originalEvent.layerX) {
+            mouseX =  e.pageX-offset.left;
+            mouseY = e.pageY-offset.top;
+        }
+        bMouseDown = true;
+        if ((mouseX > cat.x+cat.w && mouseX < ctx.canvas.width) || (mouseX<cat.x && mouseX > 0) )
+        {
+            iLastMouseX = mouseX;
+        }
+        if ((mouseY > cat.y+cat.h && mouseY < ctx.canvas.height) || (mouseY<cat.y && mouseY > 0))
+        {
+            iLastMouseY = mouseY;
+        }
+    });
+
+    $('#scene').bind('mouseup',function(e){
+        cat.bCat = false;
+        bMouseDown = false;
+    });
 
     $('#scene').bind('touchstart',function(event)
     {
