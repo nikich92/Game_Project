@@ -1,7 +1,7 @@
 *
 {
-    /*-webkit-tap-highlight-color: transparent;*/
-    /*-webkit-transform: translate3d(0, 0, 0);*/
+    -webkit-tap-highlight-color: transparent;
+    -webkit-transform: translate3d(0, 0, 0);
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;

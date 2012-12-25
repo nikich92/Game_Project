@@ -747,35 +747,11 @@ $(document).ready(function init(){
 
 
     ////-------------------------------------УПРАВЛЕНИЕ--------------------------////
-    $('#scene').bind('mousedown',function(e) {
-        var mouseX = e.layerX || 0;
-        var mouseY = e.layerY || 0;
-        if(e.originalEvent.layerX) {
-            mouseX =  e.pageX-offset.left;
-            mouseY = e.pageY-offset.top;
-        }
-        bMouseDown = true;
-        if ((mouseX > cat.x+cat.w && mouseX < ctx.canvas.width) || (mouseX<cat.x && mouseX > 0) )
-        {
-            iLastMouseX = mouseX;
-        }
-        if ((mouseY > cat.y+cat.h && mouseY < ctx.canvas.height) || (mouseY<cat.y && mouseY > 0))
-        {
-            iLastMouseY = mouseY;
-        }
-    });
-
-    $('#scene').bind('mouseup',function(e){
-        cat.bCat = false;
-        bMouseDown = false;
-    });
 
     $('#scene').bind('touchstart',function(event)
     {
         var touchX = event.touches[0].pageX || 0;
         var touchY = event.touches[0].pageY || 0;
-        //event.preventDefault();
-        //var touch = e.touch[0];
         if(event.originalEvent.layerX) {
             touchX =  event.pageX-offset.left;
             touchY = event.pageY-offset.top;
@@ -802,12 +778,13 @@ $(document).ready(function init(){
 ///////////////ПАУЗА////////////////
     $('#btnPause').bind('tap',function(e)
     {
-       // e.preventDefault();
+
         $('#shell').css("display","none");
         $('#btnPause').css('visibility','hidden');
         paused = true;
         menuStr = 2;
         menu();
+        e.preventDefault();
     });
 /////////////////Рекорды////////////////
     $('#rec').bind('tap',function(e)
@@ -817,6 +794,7 @@ $(document).ready(function init(){
         $('#menu').fadeOut('slow');
         menuStr = 3;
         menu();
+        e.preventDefault();
     });
 
     $('#back').bind('tap',function(e)
@@ -827,6 +805,7 @@ $(document).ready(function init(){
         $('#menu').fadeIn('slow');
         menuStr = 4;
         menu();
+        e.preventDefault();
     });
 //////Выход//////
     $('#quit').bind('tap',function(e)
@@ -842,6 +821,7 @@ $(document).ready(function init(){
         menuStr = -1;
         newGame = true;
         paused = true;
+        e.preventDefault();
         return;
     });
 
@@ -875,6 +855,7 @@ $(document).ready(function init(){
         }
         menuStr = 4;
         menu();
+        e.preventDefault();
     });
 
 ///////////////Продолжить/НАЧАТЬ/////////
@@ -933,6 +914,7 @@ $(document).ready(function init(){
             );
             $('#wrapper').fadeOut("slow");
             drawScene();
+            e.preventDefault();
             return;
         }
     });
