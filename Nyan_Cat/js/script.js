@@ -127,10 +127,6 @@ function menu(){
         if (interval!=null)
             clearTimeout(interval);
         clear();
-        //ctx.drawImage(startMenu, 0, 0, ctx.canvas.width, ctx.canvas.height, 0,0,ctx.canvas.width,ctx.canvas.height);
-        ctx.beginPath();
-        ctx.fillStyle = 'white';
-        ctx.font = '3em calibri';
         switch (menuStr)
         {
             case 5:
@@ -224,8 +220,6 @@ function menu(){
                 menuStr = -1;
                 break;
         }
-        ctx.fill();
-        ctx.closePath();
     }
     else return;
 }
@@ -631,14 +625,14 @@ function drawScene() { // главная функция отрисовки
 
     ctx.beginPath();
     ctx.fillStyle = "white";
-    ctx.font = "bold 2em calibri";
-    ctx.fillText(points.toString().split('.')[0],ctx.canvas.width/40,ctx.canvas.height/20)
+    ctx.font = "bold 1.5em calibri";
+    ctx.fillText(points.toString().split('.')[0],ctx.canvas.width/40,ctx.canvas.height/18)
     ctx.fill();
     ctx.closePath();
     ctx.beginPath();
     ctx.fillStyle = "white";
-    ctx.font = "bold 2em calibri";
-    ctx.fillText("Level "+levelNum,ctx.canvas.width/40,ctx.canvas.height-(ctx.canvas.height/25))
+    ctx.font = "bold 1.5em calibri";
+    ctx.fillText("Level "+levelNum,ctx.canvas.width/40,ctx.canvas.height-(ctx.canvas.height/30))
     ctx.fill();
     ctx.closePath();
     interval = setTimeout(drawScene,30);
@@ -684,15 +678,10 @@ $(document).ready(function init(){
     paused = true;
     points = 2001;
     canvas = document.getElementById('scene');
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
-    //canvas.width = 800;
-  //  canvas.height = 480;
-//    $("body").css({
-//        width: canvas.width+"px",
-//        height: canvas.height+"px",
-//        position: 'absolute'
-//    });
+    var bdW = $(document.body).width();
+    var bdH = $(document.body).height();
+    canvas.width = bdW;
+    canvas.height = bdH;
     $("#all").css({
         width: canvas.width+"px",
         height: canvas.height+"px"
@@ -713,12 +702,12 @@ $(document).ready(function init(){
     offset = cOFF.offset();
     NyanPlay = document.getElementById("backMusic");
     $("#imgSize").width(64*Xcoeff);
-    $("#imgSize").height(64*Xcoeff);
+    $("#imgSize").height(64*Ycoeff);
     $("#btnPause").css(
         {
             position:'absolute',
             width: 64*Xcoeff,
-            height: 64*Xcoeff,
+            height: 64*Ycoeff,
             marginTop:5+"%",
             //   left:canvas.width-canvas.width/10+'px',
             marginLeft:90+"%",
@@ -744,8 +733,6 @@ $(document).ready(function init(){
     catDW = catW;
     catDH = catH;
 
-
-
     ////-------------------------------------УПРАВЛЕНИЕ--------------------------////
 
     canvas.addEventListener("touchstart", function(e)
@@ -765,40 +752,41 @@ $(document).ready(function init(){
         {
             iLastMouseY = touchY;
         }
+        e.preventDefault();
     },false);
 
     canvas.addEventListener('touchend',function(event)
     {
         cat.bCat = false;
         bMouseDown = false;
-        //  event.preventDefault();
+          event.preventDefault();
     },false);
-//    $('#scene').bind('touchstart',function(event)
-//    {
-//        var touchX = event.touches[0].pageX || 0;
-//        var touchY = event.touches[0].pageY || 0;
-//        if(event.originalEvent.layerX) {
-//            touchX =  event.pageX-offset.left;
-//            touchY = event.pageY-offset.top;
-//        }
-//        bMouseDown = true;
-//        if ((touchX > cat.x+cat.w && touchX < ctx.canvas.width) || (touchX<cat.x && touchX > 0) )
-//        {
-//            iLastMouseX = touchX;
-//        }
-//        if ((touchY > cat.y+cat.h && touchY < ctx.canvas.height) || (touchY<cat.y && touchY > 0))
-//        {
-//            iLastMouseY = touchY;
-//        }
-//       // event.preventDefault();
-//    });
+    $('#scene').bind('mousedown',function(event)
+    {
+        var touchX = event.pageX || 0;
+        var touchY = event.pageY || 0;
+        if(event.originalEvent.layerX) {
+            touchX =  event.pageX-offset.left;
+            touchY = event.pageY-offset.top;
+        }
+        bMouseDown = true;
+        if ((touchX > cat.x+cat.w && touchX < ctx.canvas.width) || (touchX<cat.x && touchX > 0) )
+        {
+            iLastMouseX = touchX;
+        }
+        if ((touchY > cat.y+cat.h && touchY < ctx.canvas.height) || (touchY<cat.y && touchY > 0))
+        {
+            iLastMouseY = touchY;
+        }
+       // event.preventDefault();
+    });
 //
-//    $('#scene').bind('touchend',function(event)
-//    {
-//        cat.bCat = false;
-//        bMouseDown = false;
-//      //  event.preventDefault();
-//    });
+    $('#scene').bind('mouseup',function(event)
+    {
+        cat.bCat = false;
+        bMouseDown = false;
+      //  event.preventDefault();
+    });
 
 ///////////////ПАУЗА////////////////
     $('#btnPause').bind('tap',function(e)
@@ -989,15 +977,10 @@ function initialize()
     paused = true;
     points = 2001;
     canvas = document.getElementById('scene');
-    canvas.width = screen.width;
-    canvas.height = screen.height;
-   // canvas.width = 800;
-   // canvas.height = 480;
-    $("body").css({
-        width: canvas.width+"px",
-        height: canvas.height+"px",
-        position: 'absolute'
-    });
+    var bdW = $(document.body).width();
+    var bdH = $(document.body).height();
+    canvas.width = bdW;
+    canvas.height = bdH;
     $("#all").css({
         width: canvas.width+"px",
         height: canvas.height+"px"
@@ -1018,12 +1001,12 @@ function initialize()
     offset = cOFF.offset();
     NyanPlay = document.getElementById("backMusic");
     $("#imgSize").width(64*Xcoeff);
-    $("#imgSize").height(64*Xcoeff);
+    $("#imgSize").height(64*Ycoeff);
     $("#btnPause").css(
         {
             position:'absolute',
             width: 64*Xcoeff,
-            height: 64*Xcoeff,
+            height: 64*Ycoeff,
             marginTop:5+"%",
             //   left:canvas.width-canvas.width/10+'px',
             marginLeft:90+"%",
